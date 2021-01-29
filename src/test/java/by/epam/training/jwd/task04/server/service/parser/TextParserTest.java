@@ -1,6 +1,6 @@
 package by.epam.training.jwd.task04.server.service.parser;
 
-import by.epam.training.jwd.task04.bean.impl.composite.Text;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.service.text_builder.parser.TextParser;
 import org.junit.Test;
 
@@ -31,7 +31,7 @@ public class TextParserTest {
 
     @Test
     public void parse_simpleText_textObject() {
-        String text = "hey boy";
+        String text = "way is a";
         TextParser parser = new TextParser();
 
         Text expected = parser.parse(text);

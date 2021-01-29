@@ -1,12 +1,12 @@
 package by.epam.training.jwd.task04.server.service.operation.impl;
 
-import by.epam.training.jwd.task04.bean.Component;
-import by.epam.training.jwd.task04.bean.impl.Code;
-import by.epam.training.jwd.task04.bean.impl.Digit;
-import by.epam.training.jwd.task04.bean.impl.LineEnd;
-import by.epam.training.jwd.task04.bean.impl.Word;
-import by.epam.training.jwd.task04.bean.impl.composite.Sentence;
-import by.epam.training.jwd.task04.bean.impl.composite.Text;
+import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.bean.text_components.impl.Code;
+import by.epam.training.jwd.task04.bean.text_components.impl.Digit;
+import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.bean.text_components.impl.Word;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Sentence;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
 import by.epam.training.jwd.task04.server.service.operation.TextOperation;
 import by.epam.training.jwd.task04.server.service.operation.comparator.*;
@@ -14,11 +14,10 @@ import by.epam.training.jwd.task04.server.service.text_builder.parser.ParserFact
 import by.epam.training.jwd.task04.server.service.text_builder.parser.SentenceParser;
 import by.epam.training.jwd.task04.server.service.text_builder.parser.TextParser;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import static by.epam.training.jwd.task04.server.service.operation.properties.OperationProperties.*;
 
@@ -86,7 +85,7 @@ public class TextOperationImpl implements TextOperation {
         for (Component el : text.getSentences()){
             if (((Sentence)el).isQuestion()) {
                 for (Component component : ((Sentence) el).getComponents()) {
-                    if (component.getContent().length() == len &&
+                    if (component.getClass() == Word.class && component.getContent().length() == len &&
                             !buff.toString().contains(component.getContent() + " ")) {
                         equalLenWords.add(component);
                         buff.append(component.getContent()).append(" ");
@@ -111,6 +110,11 @@ public class TextOperationImpl implements TextOperation {
         List<Component> sorted = new ArrayList<>();
         List<Component> words = text.getWords();
         Collections.sort(words, new AlphOrderComparator());
+
+        words = words.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
         String tempChar = words.get(0).getContent().charAt(0) + "";
         String currentChar;
         sorted.add(words.get(0));
@@ -129,9 +133,14 @@ public class TextOperationImpl implements TextOperation {
 
     @Override
     public Text wordsByVowelsProportion(Text text) {
-        Text sorted = new Text(new ArrayList<>(text.getWords()));
-        Collections.sort(sorted.getComponents(), new VowelsProportionComparator());
-        return sorted;
+        List<Component> words = text.getWords();
+        Collections.sort(words, new VowelsProportionComparator());
+
+         words = words.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        return new Text(new ArrayList<>(words));
     }
 
     @Override
@@ -143,6 +152,11 @@ public class TextOperationImpl implements TextOperation {
                 firstVowelWords.add(el);
             }
         }
+
+        firstVowelWords = firstVowelWords.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
         Text sorted = new Text(firstVowelWords);
         Collections.sort(sorted.getComponents(), new AlphOrderByFirsConsontant());
         return sorted;
@@ -150,30 +164,33 @@ public class TextOperationImpl implements TextOperation {
 
     @Override
     public Text wordsByGivenLetterPresence(Text text, String letter) {
-        Text sorted = new Text(new ArrayList<>(text.getWords()));
-        Collections.sort(sorted.getComponents(), new LetterPresenceComparator(letter));
-        return sorted;
+        List<Component> words = text.getWords();
+
+        Collections.sort(words, new LetterPresenceComparator(letter));
+
+        words = words.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        return new Text(new ArrayList<>(words));
     }
 
     @Override
     public Text wordsByPresenceInText(Text text, String words) {
         TextParser parser = factory.getTextParser();
-        List<Component> wordList = parser.parse(words).getComponents();
+        Text content = parser.parse(words);
+        List<Component> wordList = content.toLowLevelComponents();
         Collections.sort(wordList, new OccuranceInTextComparator(text));
         return new Text(wordList);
     }
 
     @Override
-    public Text removeCertainSubstring(Text text, String substring) {
+    public Text removeCertainSubstring(Text text, String ch1, String ch2) {
         TextParser parser = factory.getTextParser();
-        Text parsedSubstring = parser.parse(substring);
-        //String regex = String.format("(?i)(%s)",parsedSubstring);
-        String regex = String.format(manager.getValue(STRING_OCCURANCE_REGEX), parsedSubstring);
-        String strText = text.getContent();
-        strText = strText.replaceAll(regex, "");
+        String textStr = text.getContent();
+        textStr = textStr.replaceAll(String.format(manager.getValue(FROM_CHAR_TO_CHAR_SUBSTR), ch1, ch2), "");
 
-
-        return parser.parse(strText);
+        return parser.parse(textStr);
     }
 
     // все слова заданной длины на согласную
@@ -189,11 +206,12 @@ public class TextOperationImpl implements TextOperation {
                 for (Component el : ((Sentence)majorEl).getComponents()){
                     if (el.getClass() != Word.class){
                         sentence.add(el);
-                    }
-                    if (el.getContent().length() != len ||
-                            //((Character) el.getContent().charAt(0)).toString().matches("(?i)[aeiouywAEIOUYW]")) {
-                            ((Character) el.getContent().charAt(0)).toString().matches(manager.getValue(CONTAINS_OWEL_REGEX))) {
-                        sentence.add(el);
+                    } else {
+                        if (el.getContent().length() != len ||
+                                //((Character) el.getContent().charAt(0)).toString().matches("(?i)[aeiouywAEIOUYW]")) {
+                                ((Character) el.getContent().charAt(0)).toString().matches(manager.getValue(FIRST_VOWEL_REGEX))) {
+                            sentence.add(el);
+                        }
                     }
                 }
                 appropriateelements.add(sentence);
@@ -205,9 +223,14 @@ public class TextOperationImpl implements TextOperation {
 
     @Override
     public Text sortWordsBySymbolPresence(Text text, String symbol) {
-        Text sorted = new Text(new ArrayList<>(text.getWords()));
-        Collections.sort(sorted.getComponents(), new LetterPresenceComparator(symbol));
-        return sorted;
+        List<Component> words = text.getWords();
+        Collections.sort(words, new LetterPresenceComparator(symbol));
+
+        words = words.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        return new Text(new ArrayList<>(words));
     }
 
     @Override
@@ -236,7 +259,7 @@ public class TextOperationImpl implements TextOperation {
             if (el.getClass() == Word.class) {
                 String modified = el.getContent().charAt(0) +
                        // el.getContent().replaceAll(String.format("(?i)(%s)", el.getContent().charAt(0)), "");
-                        el.getContent().replaceAll(String.format(manager.getValue(STRING_OCCURANCE_REGEX), el.getContent().charAt(0)), "");
+                        el.getContent().replaceAll(String.format(manager.getValue(CONTAINS_CHRSET), el.getContent().charAt(0)), "");
                 newContent.add(new Word(modified));
             } else {
                 newContent.add(el);

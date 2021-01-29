@@ -1,11 +1,11 @@
 package by.epam.training.jwd.task04.server.service.text_builder.parser;
 
-import by.epam.training.jwd.task04.bean.Component;
-import by.epam.training.jwd.task04.bean.impl.Digit;
-import by.epam.training.jwd.task04.bean.impl.LineEnd;
-import by.epam.training.jwd.task04.bean.impl.PunctuationMark;
-import by.epam.training.jwd.task04.bean.impl.Word;
-import by.epam.training.jwd.task04.bean.impl.composite.Sentence;
+import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.bean.text_components.impl.Digit;
+import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.bean.text_components.impl.PunctuationMark;
+import by.epam.training.jwd.task04.bean.text_components.impl.Word;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Sentence;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
 
 import java.util.ArrayList;

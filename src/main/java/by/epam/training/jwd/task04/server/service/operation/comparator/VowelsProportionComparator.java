@@ -1,13 +1,13 @@
 package by.epam.training.jwd.task04.server.service.operation.comparator;
 
-import by.epam.training.jwd.task04.bean.Component;
+import by.epam.training.jwd.task04.bean.text_components.Component;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static by.epam.training.jwd.task04.server.service.operation.properties.OperationProperties.CONTAINS_OWEL_REGEX;
+import static by.epam.training.jwd.task04.server.service.operation.properties.OperationProperties.CONTAINS_VOWEL_REGEX;
 
 public class VowelsProportionComparator implements Comparator<Component> {
     @Override
@@ -16,7 +16,7 @@ public class VowelsProportionComparator implements Comparator<Component> {
         int count2 = 0;
 
         //String pattern = "(?i)[aeiouywAEIOUYW]";
-        String pattern = ResourceManager.getInstance().getValue(CONTAINS_OWEL_REGEX);
+        String pattern = ResourceManager.getInstance().getValue(CONTAINS_VOWEL_REGEX);
         Pattern r = Pattern.compile(pattern);
 
         Matcher m1 = r.matcher(o1.getContent());

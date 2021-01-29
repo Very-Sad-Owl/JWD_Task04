@@ -1,8 +1,8 @@
-package by.epam.training.jwd.task04.bean.impl.composite;
+package by.epam.training.jwd.task04.bean.text_components.impl.composite;
 
-import by.epam.training.jwd.task04.bean.Component;
-import by.epam.training.jwd.task04.bean.impl.Code;
-import by.epam.training.jwd.task04.bean.impl.LineEnd;
+import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.bean.text_components.impl.Code;
+import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,9 +135,10 @@ public class Text implements Component {
         StringBuilder stringBuilder = new StringBuilder();
         for (Component el : components){
             if (el.getClass() == LineEnd.class) {
-                stringBuilder.append(System.getProperty("line.separator"));
-            } else {
+               // stringBuilder.append(System.getProperty("line.separator"));
                 stringBuilder.append(el.getContent());
+            } else {
+                stringBuilder.append(el.getContent()).append(" ");
             }
         }
         return stringBuilder.toString();

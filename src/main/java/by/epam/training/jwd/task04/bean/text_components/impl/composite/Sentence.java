@@ -1,9 +1,9 @@
-package by.epam.training.jwd.task04.bean.impl.composite;
+package by.epam.training.jwd.task04.bean.text_components.impl.composite;
 
-import by.epam.training.jwd.task04.bean.Component;
-import by.epam.training.jwd.task04.bean.impl.LineEnd;
-import by.epam.training.jwd.task04.bean.impl.PunctuationMark;
-import by.epam.training.jwd.task04.bean.impl.Word;
+import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.bean.text_components.impl.PunctuationMark;
+import by.epam.training.jwd.task04.bean.text_components.impl.Word;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +82,8 @@ public class Sentence implements Component {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < components.size()-1; i++){
             if (components.get(i).getClass() == LineEnd.class){
-                builder.append(System.getProperty("line.separator"));
+                //builder.append(System.getProperty("line.separator"));
+                builder.append(components.get(i).getContent());
             } else {
                 builder.append(components.get(i).getContent());
                 if (components.get(i + 1).getClass() != PunctuationMark.class) {
@@ -90,7 +91,7 @@ public class Sentence implements Component {
                 }
             }
         }
-        builder.append(components.get(components.size()-1).getContent()).append(" ");
+        builder.append(components.get(components.size()-1).getContent());
         return builder.toString();
     }
 }

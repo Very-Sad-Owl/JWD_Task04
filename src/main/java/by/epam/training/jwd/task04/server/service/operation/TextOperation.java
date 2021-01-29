@@ -1,6 +1,6 @@
 package by.epam.training.jwd.task04.server.service.operation;
 
-import by.epam.training.jwd.task04.bean.impl.composite.Text;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 
 public interface TextOperation {
 
@@ -14,7 +14,7 @@ public interface TextOperation {
     Text wordsWithFirstVowelByFirsConsonantAlph(Text text);
     Text wordsByGivenLetterPresence(Text text, String letter);
     Text wordsByPresenceInText(Text text, String words);
-    Text removeCertainSubstring(Text text, String substring);
+    Text removeCertainSubstring(Text text, String ch1, String ch2);
     Text removeWordsWithFirstConsonant(Text text,int len);
     Text sortWordsBySymbolPresence(Text text, String symbol);
     Text findMaxPalindromSubstring(Text text);

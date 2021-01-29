@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.service.operation.comparator;
 
-import by.epam.training.jwd.task04.bean.Component;
-import by.epam.training.jwd.task04.bean.impl.composite.Text;
+import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
 
 import java.util.Comparator;
@@ -12,7 +12,6 @@ import static by.epam.training.jwd.task04.server.service.operation.properties.Op
 
 public class OccuranceInTextComparator implements Comparator<Component> {
     private Text text;
-    private static String regex = ResourceManager.getInstance().getValue(STRING_OCCURANCE_REGEX);//"(?i)\\b(%s)\\b";
 
     public OccuranceInTextComparator(){}
 
@@ -33,8 +32,8 @@ public class OccuranceInTextComparator implements Comparator<Component> {
         int count1 = 0;
         int count2 = 0;
 
-        Pattern word1 = Pattern.compile(String.format(regex, o1.getContent()));
-        Pattern word2 = Pattern.compile(String.format(regex, o2.getContent()));
+        Pattern word1 = Pattern.compile(String.format(ResourceManager.getInstance().getValue(STRING_OCCURANCE_REGEX), o1.getContent()));
+        Pattern word2 = Pattern.compile(String.format(ResourceManager.getInstance().getValue(STRING_OCCURANCE_REGEX), o2.getContent()));
         Text trimmed = new Text(text.getWords());
 
         Matcher m1 = word1.matcher(trimmed.getContent());
@@ -48,6 +47,6 @@ public class OccuranceInTextComparator implements Comparator<Component> {
             count2++;
         }
 
-        return count1 - count2;
+        return count2 - count1;
     }
 }

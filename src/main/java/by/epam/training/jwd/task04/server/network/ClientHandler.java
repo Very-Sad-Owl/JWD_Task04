@@ -1,6 +1,7 @@
 package by.epam.training.jwd.task04.server.network;
 
-import by.epam.training.jwd.task04.bean.impl.composite.Text;
+import by.epam.training.jwd.task04.bean.network.ClientRequest;
+import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.service.text_builder.TextBuilder;
 import by.epam.training.jwd.task04.server.service.text_builder.TextBuilderFactory;
 import by.epam.training.jwd.task04.server.service.operation.TextOperation;
@@ -34,136 +35,110 @@ public class ClientHandler implements Runnable {
 			String strText = (String)in.readObject();
 			content = builder.parseText(strText);
 			LOGGER.info("Server received text\n");
-			boolean inUse = true;
 
-			while (inUse) {
-				Text res;
-				int task = ((Integer)in.readObject());
-				LOGGER.info("task " + task + " selected\n");
-				switch (task){
-					case 0:
-						out.writeObject(content);
-						out.flush();
-						break;
-					case 1:
-						res = operation.sentencesWithSimilarWordsCount(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 2:
-						res = operation.sentenceByWordsCount(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 3:
-						res = operation.firstSentenceOriginalWord(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 4:
-						int len = (Integer)in.readObject();
-						res = operation.equalLengthWordsInQSentences(content, len);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 5:
-						res = operation.swapFirstAndLastWords(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 6:
-						res = operation.wordsByAlphOrder(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 7:
-						res = operation.wordsByVowelsProportion(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 8:
-						res = operation.wordsWithFirstVowelByFirsConsonantAlph(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 9:
-						String letter = (String)in.readObject();
-						res = operation.wordsByGivenLetterPresence(content, letter);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 10:
-						String words = (String)in.readObject();
-						res = operation.wordsByPresenceInText(content, words);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 11:
-						String substring = (String)in.readObject();
-						res = operation.removeCertainSubstring(content, substring);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 12:
-						int len12 = (Integer)in.readObject();
-						res = operation.removeWordsWithFirstConsonant(content, len12);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 13:
-						String symbol13 = (String)in.readObject();
-						res = operation.sortWordsBySymbolPresence(content, symbol13);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 14:
-						res = operation.findMaxPalindromSubstring(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 15:
-						res = operation.modifyWords(content);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					case 16:
-						int len16 = (Integer)in.readObject();
-						String substring16 = (String)in.readObject();
-						res = operation.replaceWordsWithSubstring(content, len16, substring16);
-						System.out.println(res.getContent());
-						out.writeObject(res);
-						out.flush();
-						break;
-					default:
-						inUse = false;
-						break;
-				}
+			Text res;
+			ClientRequest req = ((ClientRequest) in.readObject());
+			LOGGER.info("task " + req.getTaskCode() + " selected\n");
+			switch (req.getTaskCode()) {
+				case 0:
+					out.writeObject(content);
+					out.flush();
+					break;
+				case 1:
+					res = operation.sentencesWithSimilarWordsCount(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 2:
+					res = operation.sentenceByWordsCount(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 3:
+					res = operation.firstSentenceOriginalWord(content);
+					System.out.println(res.getContent());
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 4:
+					res = operation.equalLengthWordsInQSentences(content, (Integer) req.getParams().get("len"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 5:
+					res = operation.swapFirstAndLastWords(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 6:
+					res = operation.wordsByAlphOrder(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 7:
+					res = operation.wordsByVowelsProportion(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 8:
+					res = operation.wordsWithFirstVowelByFirsConsonantAlph(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 9:
+					res = operation.wordsByGivenLetterPresence(content, (String) req.getParams().get("symbol"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 10:
+					res = operation.wordsByPresenceInText(content, (String) req.getParams().get("words"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 11:
+					res = operation.removeCertainSubstring(content, (String) req.getParams().get("char1"),
+							(String) req.getParams().get("char2"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 12:
+					res = operation.removeWordsWithFirstConsonant(content, (Integer) req.getParams().get("len"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 13:
+					res = operation.sortWordsBySymbolPresence(content, (String) req.getParams().get("symbol"));
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 14:
+					res = operation.findMaxPalindromSubstring(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 15:
+					res = operation.modifyWords(content);
+					out.writeObject(res);
+					out.flush();
+					break;
+				case 16:
+					res = operation.replaceWordsWithSubstring(content, (Integer) req.getParams().get("len"),
+							(String) req.getParams().get("substr"));
+					out.writeObject(res);
+					out.flush();
+					break;
 			}
 
+
 			LOGGER.info("Client disconnected\n");
-			LOGGER.info("Closing connections & channels.\n");
+			LOGGER.info("Closing connections and channels...\n");
 
 			in.close();
 			out.close();
 
 			clientDialog.close();
 
-			LOGGER.info("Closing connections & channels - DONE.\n");
+			LOGGER.info("Connections and channels have been closed\n");
 
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
