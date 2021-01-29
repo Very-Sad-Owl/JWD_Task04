@@ -1,13 +1,14 @@
 package by.epam.training.jwd.task04.server.service.operation.impl;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.bean.text_components.impl.Code;
-import by.epam.training.jwd.task04.bean.text_components.impl.Digit;
-import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
-import by.epam.training.jwd.task04.bean.text_components.impl.Word;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Sentence;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Code;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Digit;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Word;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Sentence;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;
 import by.epam.training.jwd.task04.server.service.operation.TextOperation;
 import by.epam.training.jwd.task04.server.service.operation.comparator.*;
 import by.epam.training.jwd.task04.server.service.text_builder.parser.ParserFactory;
@@ -24,7 +25,7 @@ import static by.epam.training.jwd.task04.server.service.operation.properties.Op
 public class TextOperationImpl implements TextOperation {
 
     private static ParserFactory factory = ParserFactory.getInstance();
-    private static final ResourceManager manager = ResourceManager.getInstance();
+    private static final ResourceManager manager = ResourceManagerBuilderFactory.getInstance().getOperationResource();
 
     @Override
     public Text sentencesWithSimilarWordsCount(Text text) {
@@ -34,7 +35,6 @@ public class TextOperationImpl implements TextOperation {
         for (Component el : text.getSentences()) {
             for (Component word : ((Sentence) el).getWords()) {
                 counter = 0;
-                //String regex = String.format("(?i)\\b(%s)\\b", (word.getContent()));
                 String regex = String.format(manager.getValue(STRING_OCCURANCE_REGEX), (word.getContent()));
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(el.getContent());
@@ -60,7 +60,6 @@ public class TextOperationImpl implements TextOperation {
 
     @Override
     public Text firstSentenceOriginalWord(Text text) {
-        //String regex = "(?i)(%s)";
         String regex = manager.getValue(STRING_OCCURANCE_REGEX);
         for (Component el : text.getSentences().get(0).getWords()) {
             int count = 0;
@@ -147,7 +146,6 @@ public class TextOperationImpl implements TextOperation {
     public Text wordsWithFirstVowelByFirsConsonantAlph(Text text) {
         List<Component> firstVowelWords = new ArrayList<>();
         for (Component el : text.getWords()) {
-            //if (el.getContent().matches("(\\b[aeiouAEIOU].[^\\s\\.\\!\\?]*)|(^[aeiouAEIOU].[^\\s\\.\\!\\?]+)")) {
             if (el.getContent().matches(manager.getValue(FIRST_VOWEL_REGEX))) {
                 firstVowelWords.add(el);
             }
@@ -193,7 +191,6 @@ public class TextOperationImpl implements TextOperation {
         return parser.parse(textStr);
     }
 
-    // все слова заданной длины на согласную
     @Override
     public Text removeWordsWithFirstConsonant(Text text, int len) {
         List<Component> appropriateelements = new ArrayList<>();
@@ -208,7 +205,6 @@ public class TextOperationImpl implements TextOperation {
                         sentence.add(el);
                     } else {
                         if (el.getContent().length() != len ||
-                                //((Character) el.getContent().charAt(0)).toString().matches("(?i)[aeiouywAEIOUYW]")) {
                                 ((Character) el.getContent().charAt(0)).toString().matches(manager.getValue(FIRST_VOWEL_REGEX))) {
                             sentence.add(el);
                         }
@@ -238,7 +234,6 @@ public class TextOperationImpl implements TextOperation {
         SentenceParser parser = factory.getSentenceParser();
         String substring = "";
         int maxLen = 0;
-        //String regex = "\\b(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*(?:(\\w)[ \\t,'\"]*\\11?[ \\t,'\"]*\\10|\\10?)[ \\t,'\"]*\\9|\\9?)[ \\t,'\"]*\\8|\\8?)[ \\t,'\"]*\\7|\\7?)[ \\t,'\"]*\\6|\\6?)[ \\t,'\"]*\\5|\\5?)[ \\t,'\"]*\\4|\\4?)[ \\t,'\"]*\\3|\\3?)[ \\t,'\"]*\\2|\\2?))?[ \\t,'\"]*\\1\\b";
         String regex = manager.getValue(PALINDROM_REGEX);
         Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(text.getContent());
@@ -258,7 +253,6 @@ public class TextOperationImpl implements TextOperation {
         for (Component el : text.toLowLevelComponents()) {
             if (el.getClass() == Word.class) {
                 String modified = el.getContent().charAt(0) +
-                       // el.getContent().replaceAll(String.format("(?i)(%s)", el.getContent().charAt(0)), "");
                         el.getContent().replaceAll(String.format(manager.getValue(CONTAINS_CHRSET), el.getContent().charAt(0)), "");
                 newContent.add(new Word(modified));
             } else {

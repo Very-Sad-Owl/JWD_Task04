@@ -1,8 +1,8 @@
-package by.epam.training.jwd.task04.bean.text_components.impl.composite;
+package by.epam.training.jwd.task04.common.bean.text_components.impl.composite;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.bean.text_components.impl.Code;
-import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Code;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.LineEnd;
 
 import java.util.ArrayList;
 import java.util.List;

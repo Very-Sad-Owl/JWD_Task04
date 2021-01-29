@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.network;
 
-import by.epam.training.jwd.task04.bean.network.ClientRequest;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
+import by.epam.training.jwd.task04.common.bean.network.ClientRequest;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.service.text_builder.TextBuilder;
 import by.epam.training.jwd.task04.server.service.text_builder.TextBuilderFactory;
 import by.epam.training.jwd.task04.server.service.operation.TextOperation;
@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.net.Socket;
 
-import static by.epam.training.jwd.task04.bean.params_config.ParamName.*;
+import static by.epam.training.jwd.task04.common.request_param.ParamName.*;
 
 public class ClientHandler implements Runnable {
 

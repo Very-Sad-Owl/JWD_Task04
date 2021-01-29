@@ -1,6 +1,6 @@
 package by.epam.training.jwd.task04.client.controller.request_builder;
 
-import by.epam.training.jwd.task04.bean.network.ClientRequest;
+import by.epam.training.jwd.task04.common.bean.network.ClientRequest;
 
 public interface RequestBuilder {
 

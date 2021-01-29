@@ -1,6 +1,6 @@
 package by.epam.training.jwd.task04.server.service.impl;
 
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.server.service.operation.impl.TextOperationImpl;
 import by.epam.training.jwd.task04.server.service.text_builder.parser.TextParser;
 import org.junit.Test;

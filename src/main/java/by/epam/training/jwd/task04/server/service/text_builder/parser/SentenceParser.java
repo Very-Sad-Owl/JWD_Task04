@@ -1,12 +1,13 @@
 package by.epam.training.jwd.task04.server.service.text_builder.parser;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.bean.text_components.impl.Digit;
-import by.epam.training.jwd.task04.bean.text_components.impl.LineEnd;
-import by.epam.training.jwd.task04.bean.text_components.impl.PunctuationMark;
-import by.epam.training.jwd.task04.bean.text_components.impl.Word;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Sentence;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Digit;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.LineEnd;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.PunctuationMark;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.Word;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Sentence;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,9 @@ import static by.epam.training.jwd.task04.server.service.text_builder.properties
 
 public class SentenceParser {
 
-    private static final ResourceManager manager = ResourceManager.getInstance();
+    private static final ResourceManager manager = ResourceManagerBuilderFactory.getInstance().getParserResource();
     private static final Pattern sentencePattern = Pattern.compile
             (manager.getValue(SENTENCE_PARTS));
-            //("(?<word>\\b[^\\s\\d]+\\b)((?<=\\.\\w).)?|(?<mark>[.,!?])|(?<digit>\\d)|(?<line>([\.\!\?][\n\r])");
 
     public List<Component> parse(String source) {
         String[] sentences = source.split("(?<=[\\.\\!\\?])\\s*");

@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.service.operation.comparator;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Sentence;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Sentence;
 
 import java.util.Comparator;
 

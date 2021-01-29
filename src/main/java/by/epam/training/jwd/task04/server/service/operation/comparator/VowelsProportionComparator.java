@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.service.operation.comparator;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;
@@ -15,8 +15,10 @@ public class VowelsProportionComparator implements Comparator<Component> {
         int count1 = 0;
         int count2 = 0;
 
-        //String pattern = "(?i)[aeiouywAEIOUYW]";
-        String pattern = ResourceManager.getInstance().getValue(CONTAINS_VOWEL_REGEX);
+        String pattern = ResourceManagerBuilderFactory
+                .getInstance()
+                .getOperationResource()
+                .getValue(CONTAINS_VOWEL_REGEX);
         Pattern r = Pattern.compile(pattern);
 
         Matcher m1 = r.matcher(o1.getContent());

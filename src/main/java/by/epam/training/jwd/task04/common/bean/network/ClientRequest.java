@@ -1,7 +1,7 @@
-package by.epam.training.jwd.task04.bean.network;
+package by.epam.training.jwd.task04.common.bean.network;
 
-import by.epam.training.jwd.task04.bean.params_config.ParamName;
-import by.epam.training.jwd.task04.bean.params_config.TaskNum;
+import by.epam.training.jwd.task04.common.request_param.ParamName;
+import by.epam.training.jwd.task04.common.request_param.TaskNum;
 
 import java.io.Serializable;
 import java.util.Map;

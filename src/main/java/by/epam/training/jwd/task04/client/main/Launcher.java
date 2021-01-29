@@ -1,6 +1,6 @@
 package by.epam.training.jwd.task04.client.main;
 
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.client.controller.Controller;
 import by.epam.training.jwd.task04.client.controller.exception.ControllerException;
 import by.epam.training.jwd.task04.client.controller.request_builder.RequestBuilder;
@@ -32,7 +32,7 @@ public class Launcher {
 
             controller.uploadText(manager.getValue(FILE_PATH));
 
-            controller.sendRequest(builder.requestForTask0());
+            controller.sendRequest(builder.requestForTask4(2));
             Text received = controller.getResponse();
             controller.showResponse(received);
 

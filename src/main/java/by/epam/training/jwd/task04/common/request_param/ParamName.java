@@ -1,4 +1,4 @@
-package by.epam.training.jwd.task04.bean.params_config;
+package by.epam.training.jwd.task04.common.request_param;
 
 public enum ParamName {
 

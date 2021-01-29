@@ -2,6 +2,7 @@ package by.epam.training.jwd.task04.server.network;
 
 import by.epam.training.jwd.task04.server.exception.ServerException;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -14,7 +15,7 @@ import static by.epam.training.jwd.task04.server.main.LauncherProperties.*;
 
 public class Server {
 
-    private static final ResourceManager manager = ResourceManager.getInstance();
+    private static final ResourceManager manager = ResourceManagerBuilderFactory.getInstance().getServerResource();
     private static ExecutorService executeIt = Executors.newFixedThreadPool(Integer.parseInt(manager.getValue(MAX_USER)));
     private static final Logger LOGGER = Logger.getLogger(Server.class);
 

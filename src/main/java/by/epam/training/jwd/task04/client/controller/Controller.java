@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.client.controller;
 
-import by.epam.training.jwd.task04.bean.network.ClientRequest;
-import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
+import by.epam.training.jwd.task04.common.bean.network.ClientRequest;
+import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.client.dao.BookDao;
 import by.epam.training.jwd.task04.client.controller.exception.ControllerException;
 import by.epam.training.jwd.task04.client.dao.exception.DAOException;

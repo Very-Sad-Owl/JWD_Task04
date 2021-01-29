@@ -1,6 +1,6 @@
-package by.epam.training.jwd.task04.bean.text_components.impl;
+package by.epam.training.jwd.task04.common.bean.text_components.impl;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
 
 import java.util.Objects;
 

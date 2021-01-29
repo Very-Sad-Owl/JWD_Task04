@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.service.operation.comparator;
 
-import by.epam.training.jwd.task04.bean.text_components.Component;
-import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.common.bean.text_components.Component;
+import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;
 
 import java.util.Comparator;
 
@@ -12,7 +12,7 @@ public class AlphOrderByFirsConsontant implements Comparator<Component> {
     @Override
     public int compare(Component o1, Component o2) {
         //String pattern = "\\b[^\\sAEIOUaeiou]*[aeiouAEIOU]+";
-        String pattern =  ResourceManager.getInstance().getValue(PART_BEFORE_CONSONTANT);
+        String pattern =  ResourceManagerBuilderFactory.getInstance().getOperationResource().getValue(PART_BEFORE_CONSONTANT);
         String part1 = o1.getContent().replaceAll(pattern, "");
         String part2 = o2.getContent().replaceAll(pattern, "");
 

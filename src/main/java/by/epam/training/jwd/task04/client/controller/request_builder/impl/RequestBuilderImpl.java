@@ -1,14 +1,14 @@
 package by.epam.training.jwd.task04.client.controller.request_builder.impl;
 
-import by.epam.training.jwd.task04.bean.params_config.ParamName;
-import by.epam.training.jwd.task04.bean.network.ClientRequest;
+import by.epam.training.jwd.task04.common.request_param.ParamName;
+import by.epam.training.jwd.task04.common.bean.network.ClientRequest;
 import by.epam.training.jwd.task04.client.controller.request_builder.RequestBuilder;
-
-import static by.epam.training.jwd.task04.bean.params_config.ParamName.*;
-import static by.epam.training.jwd.task04.bean.params_config.TaskNum.*;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static by.epam.training.jwd.task04.common.request_param.ParamName.*;
+import static by.epam.training.jwd.task04.common.request_param.TaskNum.*;
 
 public class RequestBuilderImpl implements RequestBuilder {
 
