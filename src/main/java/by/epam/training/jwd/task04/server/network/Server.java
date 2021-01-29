@@ -10,7 +10,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import static by.epam.training.jwd.task04.server.LauncherProperties.*;
+import static by.epam.training.jwd.task04.server.main.LauncherProperties.*;
 
 public class Server {
 

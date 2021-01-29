@@ -1,7 +1,11 @@
 package by.epam.training.jwd.task04.client.controller.request_builder.impl;
 
+import by.epam.training.jwd.task04.bean.params_config.ParamName;
 import by.epam.training.jwd.task04.bean.network.ClientRequest;
 import by.epam.training.jwd.task04.client.controller.request_builder.RequestBuilder;
+
+import static by.epam.training.jwd.task04.bean.params_config.ParamName.*;
+import static by.epam.training.jwd.task04.bean.params_config.TaskNum.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,103 +14,103 @@ public class RequestBuilderImpl implements RequestBuilder {
 
     @Override
     public ClientRequest requestForTask0() {
-        return new ClientRequest(0);
+        return new ClientRequest(GET_TEXT);
     }
 
     @Override
     public ClientRequest requestForTask1() {
-        return new ClientRequest(1);
+        return new ClientRequest(TASK_1);
     }
 
     @Override
     public ClientRequest requestForTask2() {
-        return new ClientRequest(2);
+        return new ClientRequest(TASK_2);
     }
 
     @Override
     public ClientRequest requestForTask3() {
-        return new ClientRequest(3);
+        return new ClientRequest(TASK_3);
     }
 
     @Override
     public ClientRequest requestForTask4(int len) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("len", len);
-        return new ClientRequest(4, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(LENGTH, len);
+        return new ClientRequest(TASK_4, params);
     }
 
     @Override
     public ClientRequest requestForTask5() {
-        return new ClientRequest(5);
+        return new ClientRequest(TASK_5);
     }
 
     @Override
     public ClientRequest requestForTask6() {
-        return new ClientRequest(6);
+        return new ClientRequest(TASK_6);
     }
 
     @Override
     public ClientRequest requestForTask7() {
-        return new ClientRequest(7);
+        return new ClientRequest(TASK_7);
     }
 
     @Override
     public ClientRequest requestForTask8() {
-        return new ClientRequest(8);
+        return new ClientRequest(TASK_8);
     }
 
     @Override
     public ClientRequest requestForTask9(String symbol) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("symbol", symbol);
-        return new ClientRequest(9, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(SYMBOL, symbol);
+        return new ClientRequest(TASK_9, params);
     }
 
     @Override
     public ClientRequest requestForTask10(String words) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("words", words);
-        return new ClientRequest(10, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(WORDS, words);
+        return new ClientRequest(TASK_10, params);
     }
 
     @Override
     public ClientRequest requestForTask11(String ch1, String ch2) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("char1", ch1);
-        params.put("char2", ch2);
-        return new ClientRequest(11, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(CHAR_ONE, ch1);
+        params.put(CHAR_TWO, ch2);
+        return new ClientRequest(TASK_11, params);
     }
 
     @Override
     public ClientRequest requestForTask12(int len) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("len", len);
-        return new ClientRequest(12, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(LENGTH, len);
+        return new ClientRequest(TASK_12, params);
     }
 
     @Override
     public ClientRequest requestForTask13(String symbol) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("symbol", symbol);
-        return new ClientRequest(13, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(SYMBOL, symbol);
+        return new ClientRequest(TASK_13, params);
     }
 
     @Override
     public ClientRequest requestForTask14() {
-        return new ClientRequest(14);
+        return new ClientRequest(TASK_14);
     }
 
     @Override
     public ClientRequest requestForTask15() {
-        return new ClientRequest(15);
+        return new ClientRequest(TASK_15);
     }
 
     @Override
     public ClientRequest requestForTask16(int len, String substring) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("len", len);
-        params.put("substr", substring);
-        return new ClientRequest(16, params);
+        Map<ParamName, Object> params = new HashMap<>();
+        params.put(LENGTH, len);
+        params.put(SUBSTRING, substring);
+        return new ClientRequest(TASK_16, params);
     }
 
 }

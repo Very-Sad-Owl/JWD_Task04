@@ -1,4 +1,4 @@
-package by.epam.training.jwd.task04.server;
+package by.epam.training.jwd.task04.server.main;
 
 
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
@@ -6,7 +6,7 @@ import by.epam.training.jwd.task04.server.exception.ServerException;
 import by.epam.training.jwd.task04.server.network.Server;
 import org.apache.log4j.Logger;
 
-import static by.epam.training.jwd.task04.server.LauncherProperties.*;
+import static by.epam.training.jwd.task04.server.main.LauncherProperties.*;
 
 public class Launcher {
 

@@ -1,5 +1,8 @@
 package by.epam.training.jwd.task04.bean.network;
 
+import by.epam.training.jwd.task04.bean.params_config.ParamName;
+import by.epam.training.jwd.task04.bean.params_config.TaskNum;
+
 import java.io.Serializable;
 import java.util.Map;
 import java.util.Objects;
@@ -7,34 +10,34 @@ import java.util.Objects;
 public class ClientRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int taskCode;
-    private Map<String, Object> params;
+    private TaskNum taskCode;
+    private Map<ParamName, Object> params;
 
     public ClientRequest(){
     }
 
-    public ClientRequest(int taskCode) {
+    public ClientRequest(TaskNum taskCode) {
         this.taskCode = taskCode;
     }
 
-    public ClientRequest(int taskCode, Map<String, Object> params) {
+    public ClientRequest(TaskNum taskCode, Map<ParamName, Object> params) {
         this.taskCode = taskCode;
         this.params = params;
     }
 
-    public int getTaskCode() {
+    public TaskNum getTaskCode() {
         return taskCode;
     }
 
-    public void setTaskCode(int taskCode) {
+    public void setTaskCode(TaskNum taskCode) {
         this.taskCode = taskCode;
     }
 
-    public Map<String, Object> getParams() {
+    public Map<ParamName, Object> getParams() {
         return params;
     }
 
-    public void setParams(Map<String, Object> params) {
+    public void setParams(Map<ParamName, Object> params) {
         this.params = params;
     }
 

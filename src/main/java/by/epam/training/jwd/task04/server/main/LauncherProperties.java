@@ -1,4 +1,4 @@
-package by.epam.training.jwd.task04.server;
+package by.epam.training.jwd.task04.server.main;
 
 public interface LauncherProperties {
 

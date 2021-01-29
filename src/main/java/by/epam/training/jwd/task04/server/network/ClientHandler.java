@@ -11,6 +11,8 @@ import org.apache.log4j.Logger;
 import java.io.*;
 import java.net.Socket;
 
+import static by.epam.training.jwd.task04.bean.params_config.ParamName.*;
+
 public class ClientHandler implements Runnable {
 
 	private static Socket clientDialog;
@@ -41,90 +43,90 @@ public class ClientHandler implements Runnable {
 			LOGGER.info("task " + req.getTaskCode() + " selected\n");
 
 			switch (req.getTaskCode()) {
-				case 0:
+				case GET_TEXT:
 					out.writeObject(content);
 					out.flush();
 					break;
-				case 1:
+				case TASK_1:
 					res = operation.sentencesWithSimilarWordsCount(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 2:
+				case TASK_2:
 					res = operation.sentenceByWordsCount(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 3:
+				case TASK_3:
 					res = operation.firstSentenceOriginalWord(content);
 					System.out.println(res.getContent());
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 4:
-					res = operation.equalLengthWordsInQSentences(content, (Integer) req.getParams().get("len"));
+				case TASK_4:
+					res = operation.equalLengthWordsInQSentences(content, (Integer) req.getParams().get(LENGTH));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 5:
+				case TASK_5:
 					res = operation.swapFirstAndLastWords(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 6:
+				case TASK_6:
 					res = operation.wordsByAlphOrder(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 7:
+				case TASK_7:
 					res = operation.wordsByVowelsProportion(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 8:
+				case TASK_8:
 					res = operation.wordsWithFirstVowelByFirsConsonantAlph(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 9:
-					res = operation.wordsByGivenLetterPresence(content, (String) req.getParams().get("symbol"));
+				case TASK_9:
+					res = operation.wordsByGivenLetterPresence(content, (String) req.getParams().get(SYMBOL));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 10:
-					res = operation.wordsByPresenceInText(content, (String) req.getParams().get("words"));
+				case TASK_10:
+					res = operation.wordsByPresenceInText(content, (String) req.getParams().get(WORDS));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 11:
-					res = operation.removeCertainSubstring(content, (String) req.getParams().get("char1"),
-							(String) req.getParams().get("char2"));
+				case TASK_11:
+					res = operation.removeCertainSubstring(content, (String) req.getParams().get(CHAR_ONE),
+							(String) req.getParams().get(CHAR_TWO));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 12:
-					res = operation.removeWordsWithFirstConsonant(content, (Integer) req.getParams().get("len"));
+				case TASK_12:
+					res = operation.removeWordsWithFirstConsonant(content, (Integer) req.getParams().get(LENGTH));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 13:
-					res = operation.sortWordsBySymbolPresence(content, (String) req.getParams().get("symbol"));
+				case TASK_13:
+					res = operation.sortWordsBySymbolPresence(content, (String) req.getParams().get(SYMBOL));
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 14:
+				case TASK_14:
 					res = operation.findMaxPalindromSubstring(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 15:
+				case TASK_15:
 					res = operation.modifyWords(content);
 					out.writeObject(res);
 					out.flush();
 					break;
-				case 16:
-					res = operation.replaceWordsWithSubstring(content, (Integer) req.getParams().get("len"),
-							(String) req.getParams().get("substr"));
+				case TASK_16:
+					res = operation.replaceWordsWithSubstring(content, (Integer) req.getParams().get(LENGTH),
+							(String) req.getParams().get(SUBSTRING));
 					out.writeObject(res);
 					out.flush();
 					break;
