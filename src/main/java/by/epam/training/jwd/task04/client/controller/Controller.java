@@ -29,16 +29,15 @@ public class Controller {
     }
 
     public void startServer(final String host, final int port) throws ControllerException {
-       // try {
-            try {
-                clientSocket = new Socket(host, port);
-                logger.info("Client started\n");
+        try {
+            clientSocket = new Socket(host, port);
+            logger.info("Client started\n");
 
-                in = new ObjectInputStream(clientSocket.getInputStream());
-                out = new ObjectOutputStream(clientSocket.getOutputStream());
+            in = new ObjectInputStream(clientSocket.getInputStream());
+            out = new ObjectOutputStream(clientSocket.getOutputStream());
 
         } catch (IOException e) {
-            throw  new ControllerException("Controller exception was occurred.", e);
+            throw new ControllerException("Controller exception was occurred.", e);
         }
     }
 

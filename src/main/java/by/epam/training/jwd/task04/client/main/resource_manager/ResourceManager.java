@@ -1,4 +1,4 @@
-package by.epam.training.jwd.task04.client.resource_manager;
+package by.epam.training.jwd.task04.client.main.resource_manager;
 
 import java.util.ResourceBundle;
 

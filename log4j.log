@@ -1,7 +1,7 @@
 ERROR Launcher:25 - Client exception occurred!
 by.epam.training.jwd.task04.client.controller.exception.ControllerException: Controller exception was occurred.
 	at by.epam.training.jwd.task04.client.controller.Controller.startServer(Controller.java:141)
-	at by.epam.training.jwd.task04.client.Launcher.main(Launcher.java:23)
+	at by.epam.training.jwd.task04.client.main.Launcher.main(Launcher.java:23)
 Caused by: java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
@@ -18,7 +18,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 ERROR Launcher:25 - Client exception occurred!
 by.epam.training.jwd.task04.client.controller.exception.ControllerException: Controller exception was occurred.
 	at by.epam.training.jwd.task04.client.controller.Controller.startServer(Controller.java:143)
-	at by.epam.training.jwd.task04.client.Launcher.main(Launcher.java:23)
+	at by.epam.training.jwd.task04.client.main.Launcher.main(Launcher.java:23)
 Caused by: java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
@@ -35,7 +35,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 ERROR Launcher:39 - Client exception occurred!
 by.epam.training.jwd.task04.client.controller.exception.ControllerException: Controller exception was occurred.
 	at by.epam.training.jwd.task04.client.controller.Controller.startServer(Controller.java:142)
-	at by.epam.training.jwd.task04.client.Launcher.main(Launcher.java:32)
+	at by.epam.training.jwd.task04.client.main.Launcher.main(Launcher.java:32)
 Caused by: java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
@@ -52,7 +52,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 ERROR Launcher:42 - Client exception occurred!
 by.epam.training.jwd.task04.client.controller.exception.ControllerException: Controller exception was occurred.
 	at by.epam.training.jwd.task04.client.controller.Controller.startServer(Controller.java:142)
-	at by.epam.training.jwd.task04.client.Launcher.main(Launcher.java:32)
+	at by.epam.training.jwd.task04.client.main.Launcher.main(Launcher.java:32)
 Caused by: java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
@@ -69,7 +69,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 ERROR Launcher:42 - Client exception occurred!
 by.epam.training.jwd.task04.client.controller.exception.ControllerException: Controller exception was occurred.
 	at by.epam.training.jwd.task04.client.controller.Controller.startServer(Controller.java:142)
-	at by.epam.training.jwd.task04.client.Launcher.main(Launcher.java:32)
+	at by.epam.training.jwd.task04.client.main.Launcher.main(Launcher.java:32)
 Caused by: java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)

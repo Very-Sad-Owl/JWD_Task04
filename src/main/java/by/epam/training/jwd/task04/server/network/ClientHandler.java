@@ -15,7 +15,6 @@ public class ClientHandler implements Runnable {
 
 	private static Socket clientDialog;
 	private static TextOperation operation = new TextOperationImpl();
-	private Text content;
 	private static final Logger LOGGER = Logger.getLogger(ClientHandler.class);
 
 	public ClientHandler(Socket client) {
@@ -27,18 +26,20 @@ public class ClientHandler implements Runnable {
 
 		try {
 			ObjectOutputStream out = new ObjectOutputStream(clientDialog.getOutputStream());
-
 			ObjectInputStream in = new ObjectInputStream(clientDialog.getInputStream());
 
 			TextBuilderFactory factory = TextBuilderFactory.getInstance();
 			TextBuilder builder = factory.getBuilder();
+
 			String strText = (String)in.readObject();
-			content = builder.parseText(strText);
+			Text content = builder.parseText(strText);
+
 			LOGGER.info("Server received text\n");
 
 			Text res;
 			ClientRequest req = ((ClientRequest) in.readObject());
 			LOGGER.info("task " + req.getTaskCode() + " selected\n");
+
 			switch (req.getTaskCode()) {
 				case 0:
 					out.writeObject(content);

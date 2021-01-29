@@ -1,4 +1,4 @@
-package by.epam.training.jwd.task04.client;
+package by.epam.training.jwd.task04.client.main;
 
 import by.epam.training.jwd.task04.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.client.controller.Controller;
@@ -8,13 +8,12 @@ import by.epam.training.jwd.task04.client.controller.request_builder.impl.Reques
 import by.epam.training.jwd.task04.client.dao.DaoFactory;
 import by.epam.training.jwd.task04.client.dao.exception.DAOException;
 import by.epam.training.jwd.task04.client.view.ViewFactory;
-import by.epam.training.jwd.task04.client.resource_manager.ResourceManager;
+import by.epam.training.jwd.task04.client.main.resource_manager.ResourceManager;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
 
-import static by.epam.training.jwd.task04.client.LauncherParameter.*;
-import static by.epam.training.jwd.task04.client.controller.properties.ControllerParameter.*;
+import static by.epam.training.jwd.task04.client.main.properties.LauncherParameter.*;
 
 public class Launcher {
 
