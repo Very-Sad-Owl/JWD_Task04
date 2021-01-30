@@ -14,7 +14,9 @@ public class Sentence implements Component {
     private static final long serialVersionUID = 1L;
     private List<Component> components;
 
-    public Sentence(){}
+    public Sentence(){
+        components = new ArrayList<>();
+    }
 
     public Sentence(List<Component> components) {
         this.components = components;
@@ -82,7 +84,6 @@ public class Sentence implements Component {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < components.size()-1; i++){
             if (components.get(i).getClass() == LineEnd.class){
-                //builder.append(System.getProperty("line.separator"));
                 builder.append(components.get(i).getContent());
             } else {
                 builder.append(components.get(i).getContent());
@@ -91,7 +92,9 @@ public class Sentence implements Component {
                 }
             }
         }
-        builder.append(components.get(components.size()-1).getContent());
+        if (components.size() > 0) {
+            builder.append(components.get(components.size() - 1).getContent());
+        }
         return builder.toString();
     }
 }

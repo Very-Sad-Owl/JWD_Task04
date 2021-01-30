@@ -29,7 +29,7 @@ public class TextParser {
             String textBlock = matcher.group(manager.getValue(TEXT_BLOCK));
             String codeBLock = matcher.group(manager.getValue(CODE_BLOCK));
 
-            if (textBlock != null) {
+            if (textBlock != null && !textBlock.isEmpty()) {
                 text.addAll(parser.parse(textBlock));
             }
 

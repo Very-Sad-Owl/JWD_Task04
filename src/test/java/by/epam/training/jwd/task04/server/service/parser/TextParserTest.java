@@ -22,6 +22,7 @@ public class TextParserTest {
                 "}\n" +
                 "We could have overridden other methods also, but for simplicity I am not\n" +
                 "doing that.";
+
         TextParser parser = new TextParser();
 
         Text expected = parser.parse(text);

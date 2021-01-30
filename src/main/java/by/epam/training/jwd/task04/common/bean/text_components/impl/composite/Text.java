@@ -13,7 +13,9 @@ public class Text implements Component {
     private static final long serialVersionUID = 1L;
     private List<Component> components;
 
-    public Text(){}
+    public Text(){
+        components = new ArrayList<>();
+    }
 
     public Text(List<Component> components) {
         this.components = components;
@@ -99,11 +101,13 @@ public class Text implements Component {
 
     public List<Component> toLowLevelComponents(){
         List<Component> lowComponents = new ArrayList<>();
-        for (Component hLvlEl : components){
-            if (hLvlEl.getClass() == Sentence.class){
-                lowComponents.addAll(((Sentence) hLvlEl).getComponents());
-            } else {
-                lowComponents.add(hLvlEl);
+        if (components != null) {
+            for (Component hLvlEl : components) {
+                if (hLvlEl.getClass() == Sentence.class) {
+                    lowComponents.addAll(((Sentence) hLvlEl).getComponents());
+                } else {
+                    lowComponents.add(hLvlEl);
+                }
             }
         }
         return lowComponents;
@@ -133,10 +137,12 @@ public class Text implements Component {
     public String getContent() {
         StringBuilder stringBuilder = new StringBuilder();
         for (Component el : components){
-            if (el.getClass() == LineEnd.class) {
-                stringBuilder.append(el.getContent());
-            } else {
-                stringBuilder.append(el.getContent()).append(" ");
+            if(el != null) {
+                if (el.getClass() == LineEnd.class) {
+                    stringBuilder.append(el.getContent());
+                } else {
+                    stringBuilder.append(el.getContent()).append(" ");
+                }
             }
         }
         return stringBuilder.toString();

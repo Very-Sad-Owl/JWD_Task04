@@ -35,7 +35,7 @@ public class TextOperationImpl implements TextOperation {
         for (Component el : text.getSentences()) {
             for (Component word : ((Sentence) el).getWords()) {
                 counter = 0;
-                String regex = String.format(manager.getValue(STRING_OCCURANCE_REGEX), (word.getContent()));
+                String regex = String.format(manager.getValue(STRING_OCCURANCE_REGEX), word.getContent());
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(el.getContent());
                 while (matcher.find() && counter <=2) {
@@ -188,7 +188,7 @@ public class TextOperationImpl implements TextOperation {
         List<Component> appropriateelements = new ArrayList<>();
         Sentence sentence;
         for (Component majorEl : text.getComponents()){
-            if (majorEl.getClass() == Code.class){
+            if (majorEl.getClass() == Code.class || majorEl.getClass() == LineEnd.class){
                 appropriateelements.add(majorEl);
             } else {
                 sentence = new Sentence();
