@@ -126,7 +126,7 @@ public class ClientHandler implements Runnable {
 					break;
 				case TASK_16:
 					res = operation.replaceWordsWithSubstring(content, (Integer) req.getParams().get(LENGTH),
-							(String) req.getParams().get(SUBSTRING));
+							(String) req.getParams().get(SUBSTRING), (Integer)req.getParams().get(POSITION));
 					out.writeObject(res);
 					out.flush();
 					break;

@@ -138,7 +138,7 @@ public class TextOperationImplTest {
         TextParser parser = new TextParser();
         Text arg = parser.parse(text);
 
-        Text actual = new TextOperationImpl().replaceWordsWithSubstring(arg, 2, "hey boooi");
+        Text actual = new TextOperationImpl().replaceWordsWithSubstring(arg, 2, "hey boooi", 0);
         System.out.println(actual);
     }
 

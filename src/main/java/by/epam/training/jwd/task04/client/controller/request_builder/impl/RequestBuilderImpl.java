@@ -106,10 +106,11 @@ public class RequestBuilderImpl implements RequestBuilder {
     }
 
     @Override
-    public ClientRequest requestForTask16(int len, String substring) {
+    public ClientRequest requestForTask16(int len, String substring, int pos) {
         Map<ParamName, Object> params = new HashMap<>();
         params.put(LENGTH, len);
         params.put(SUBSTRING, substring);
+        params.put(POSITION, pos);
         return new ClientRequest(TASK_16, params);
     }
 

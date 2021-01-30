@@ -19,5 +19,5 @@ public interface TextOperation {
     Text sortWordsBySymbolPresence(Text text, String symbol);
     Text findMaxPalindromSubstring(Text text);
     Text modifyWords(Text text);
-    Text replaceWordsWithSubstring(Text text, int len, String substring);
+    Text replaceWordsWithSubstring(Text text, int len, String substring, int pos);
 }

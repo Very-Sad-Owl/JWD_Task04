@@ -7,7 +7,8 @@ public enum ParamName {
     WORDS("words"),
     CHAR_ONE("char1"),
     CHAR_TWO("char2"),
-    SUBSTRING("substr");
+    SUBSTRING("substr"),
+    POSITION("pos");
 
     public final String val;
 

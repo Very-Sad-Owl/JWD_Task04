@@ -18,9 +18,9 @@ import by.epam.training.jwd.task04.server.service.text_builder.parser.TextParser
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import static by.epam.training.jwd.task04.server.service.operation.properties.OperationProperties.*;
+import static by.epam.training.jwd.task04.server.service.operation.util.TextOperationUtil.*;
 
 public class TextOperationImpl implements TextOperation {
 
@@ -110,9 +110,7 @@ public class TextOperationImpl implements TextOperation {
         List<Component> words = text.getWords();
         Collections.sort(words, new AlphOrderComparator());
 
-        words = words.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        reduceRepetitions(words);
 
         String tempChar = words.get(0).getContent().charAt(0) + "";
         String currentChar;
@@ -135,9 +133,7 @@ public class TextOperationImpl implements TextOperation {
         List<Component> words = text.getWords();
         Collections.sort(words, new VowelsProportionComparator());
 
-         words = words.stream()
-                .distinct()
-                .collect(Collectors.toList());
+         reduceRepetitions(words);
 
         return new Text(new ArrayList<>(words));
     }
@@ -151,9 +147,7 @@ public class TextOperationImpl implements TextOperation {
             }
         }
 
-        firstVowelWords = firstVowelWords.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        reduceRepetitions(firstVowelWords);
 
         Text sorted = new Text(firstVowelWords);
         Collections.sort(sorted.getComponents(), new AlphOrderByFirsConsontant());
@@ -166,9 +160,7 @@ public class TextOperationImpl implements TextOperation {
 
         Collections.sort(words, new LetterPresenceComparator(letter));
 
-        words = words.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        reduceRepetitions(words);
 
         return new Text(new ArrayList<>(words));
     }
@@ -222,9 +214,7 @@ public class TextOperationImpl implements TextOperation {
         List<Component> words = text.getWords();
         Collections.sort(words, new LetterPresenceComparator(symbol));
 
-        words = words.stream()
-                .distinct()
-                .collect(Collectors.toList());
+        reduceRepetitions(words);
 
         return new Text(new ArrayList<>(words));
     }
@@ -263,21 +253,23 @@ public class TextOperationImpl implements TextOperation {
     }
 
     @Override
-    public Text replaceWordsWithSubstring(Text text, int len, String substring) {
+    public Text replaceWordsWithSubstring(Text text, int len, String substring, int pos) {
         TextParser parser = factory.getTextParser();
         Text parsedSubstring = parser.parse(substring);
-        List<Component> newContent = new ArrayList<>();
-        for (Component el : text.toLowLevelComponents()){
-            if (el.getClass() != Word.class){
-                newContent.add(el);
-            } else {
-                if (el.getContent().length() == len){
-                    newContent.addAll(parsedSubstring.getComponents());
-                } else {
-                    newContent.add(el);
+        Text modified = new Text(text.getComponents());
+        int truePos = getTrueSentencePosition(pos, text);
+        Sentence selected = (Sentence) modified.getComponents().get(truePos);
+
+        ListIterator<Component> iterator = selected.getComponents().listIterator();
+        while (iterator.hasNext()){
+            Component el = iterator.next();
+            if (el.getClass() == Word.class && el.getContent().length() == len){
+                iterator.remove();
+                for (Component word : parsedSubstring.getComponents()){
+                    iterator.add(word);
                 }
             }
         }
-        return new Text(newContent);
+        return modified;
     }
 }

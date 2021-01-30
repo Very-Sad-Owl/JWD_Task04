@@ -32,7 +32,7 @@ public class Launcher {
 
             controller.uploadText(manager.getValue(FILE_PATH));
 
-            controller.sendRequest(builder.requestForTask4(2));
+            controller.sendRequest(builder.requestForTask16(2, "hei boi", 0));
             Text received = controller.getResponse();
             controller.showResponse(received);
 

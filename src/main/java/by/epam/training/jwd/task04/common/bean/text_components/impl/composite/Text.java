@@ -21,7 +21,6 @@ public class Text implements Component {
 
     public Text(Text text) {
         List<Component> copy = new ArrayList<>(text.components);
-        //Collections.copy(copy, text.components);
         this.components = copy;
     }
 

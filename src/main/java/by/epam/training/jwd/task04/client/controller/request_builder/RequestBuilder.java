@@ -20,5 +20,5 @@ public interface RequestBuilder {
     ClientRequest requestForTask13(String symbol);
     ClientRequest requestForTask14();
     ClientRequest requestForTask15();
-    ClientRequest requestForTask16(int len, String substring);
+    ClientRequest requestForTask16(int len, String substring, int pos);
 }
