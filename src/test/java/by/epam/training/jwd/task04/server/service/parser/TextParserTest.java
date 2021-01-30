@@ -85,7 +85,7 @@ public class TextParserTest {
         TextParser parser = new TextParser();
         Text expected = parser.parse(text);
 
-        System.out.println(expected.getComponents());
+        System.out.println(expected.getContent());
 
     }
 }

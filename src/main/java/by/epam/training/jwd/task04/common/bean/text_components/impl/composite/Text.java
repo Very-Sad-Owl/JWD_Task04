@@ -134,7 +134,6 @@ public class Text implements Component {
         StringBuilder stringBuilder = new StringBuilder();
         for (Component el : components){
             if (el.getClass() == LineEnd.class) {
-               // stringBuilder.append(System.getProperty("line.separator"));
                 stringBuilder.append(el.getContent());
             } else {
                 stringBuilder.append(el.getContent()).append(" ");

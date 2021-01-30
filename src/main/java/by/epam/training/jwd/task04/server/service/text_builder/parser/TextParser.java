@@ -1,5 +1,6 @@
 package by.epam.training.jwd.task04.server.service.text_builder.parser;
 
+import by.epam.training.jwd.task04.common.bean.text_components.impl.LineEnd;
 import by.epam.training.jwd.task04.common.bean.text_components.impl.composite.Text;
 import by.epam.training.jwd.task04.common.bean.text_components.impl.Code;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
@@ -33,6 +34,7 @@ public class TextParser {
             }
 
             if (codeBLock != null) {
+                text.add(new LineEnd());
                 text.add(new Code(codeBLock));
             }
         }
