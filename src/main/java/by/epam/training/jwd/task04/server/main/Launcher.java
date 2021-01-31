@@ -1,7 +1,7 @@
 package by.epam.training.jwd.task04.server.main;
 
 
-import by.epam.training.jwd.task04.server.exception.ServerException;
+import by.epam.training.jwd.task04.server.network.exception.ServerException;
 import by.epam.training.jwd.task04.server.network.Server;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManager;
 import by.epam.training.jwd.task04.server.resource_manager.ResourceManagerBuilderFactory;

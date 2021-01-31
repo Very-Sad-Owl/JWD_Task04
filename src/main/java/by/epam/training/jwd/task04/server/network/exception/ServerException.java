@@ -1,6 +1,7 @@
-package by.epam.training.jwd.task04.server.exception;
+package by.epam.training.jwd.task04.server.network.exception;
 
 public class ServerException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     public ServerException(){}
 

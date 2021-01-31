@@ -1,6 +1,7 @@
 package by.epam.training.jwd.task04.client.controller.exception;
 
 public class ControllerException extends Exception {
+    private static final long serialVersionUID = 1L;
 
     public ControllerException(){}
 
